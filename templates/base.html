@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization -->
+    <title>Echoes of Music by Tanu Harode | {% if title %}{{ title }}{% else %}Classical Vocalist & Teacher{% endif %}</title>
+    <meta name="description" content="Official website of Tanu Harode, an Akashvani graded artist, classical music teacher (MA in Classical Music), and performer. Learn Ghazal & classical singing or book a show.">
+    <meta name="keywords" content="Tanu Harode, Echoes of Music, Sham-e-Ghazal, music teacher, classical vocal coach, Akashvani artist, classical singer, People's International School">
+    <meta name="author" content="Tanu Harode">
+    
+    <!-- Google Fonts: Elegant Serif (Playfair Display) for headers, clean Sans-Serif (Inter) for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome icons for elegant UI accents -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style System -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- STICKY HEADER & NAVIGATION -->
+    <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <a href="{{ url_for('index') }}" class="logo">
+                <span class="logo-title">Echoes of Music</span>
+                <span class="logo-subtitle">by Tanu Harode</span>
+            </a>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+            
+            <!-- Main Desktop Navigation -->
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="{{ url_for('index') }}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}" class="{% if request.path == '/about' %}active{% endif %}">About</a></li>
+                    <li><a href="{{ url_for('classes') }}" class="{% if request.path == '/classes' %}active{% endif %}">Classes</a></li>
+                    <li><a href="{{ url_for('shows') }}" class="{% if request.path == '/shows' %}active{% endif %}">Shows</a></li>
+                    <li><a href="{{ url_for('gallery') }}" class="{% if request.path == '/gallery' %}active{% endif %}">Gallery</a></li>
+                    <li><a href="{{ url_for('contact') }}" class="{% if request.path == '/contact' %}active{% endif %}">Contact</a></li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="{{ url_for('contact') }}#booking-section" class="btn btn-gold btn-sm">Book Now</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- FLASH MESSAGES SYSTEM (FLASK) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container" id="flashContainer">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">
+                        <span class="flash-icon">
+                            {% if category == 'success' %}
+                                <i class="fa-solid fa-circle-check"></i>
+                            {% else %}
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            {% endif %}
+                        </span>
+                        <span class="flash-text">{{ message }}</span>
+                        <button class="flash-close-btn" onclick="this.parentElement.remove()">&times;</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- DYNAMIC MAIN CONTENT -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="main-footer">
+        <div class="footer-top container">
+            <div class="footer-brand">
+                <a href="{{ url_for('index') }}" class="logo logo-footer">
+                    <span class="logo-title">Echoes of Music</span>
+                    <span class="logo-subtitle">by Tanu Harode</span>
+                </a>
+                <p class="footer-desc">
+                    Bringing the rich traditions of Indian Classical Music, light music, and soulful Ghazals closer to your heart. Individual and group sessions available online and offline.
+                </p>
+                <div class="footer-socials">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Navigation</h3>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About Tanu</a></li>
+                    <li><a href="{{ url_for('classes') }}">Music Classes</a></li>
+                    <li><a href="{{ url_for('shows') }}">Live Shows</a></li>
+                    <li><a href="{{ url_for('gallery') }}">Media Gallery</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact & Bookings</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-info">
+                <h3>Contact Info</h3>
+                <ul class="contact-details-list">
+                    <li>
+                        <span class="info-icon"><i class="fa-solid fa-location-dot"></i></span>
+                        <span class="info-text">People's International School Campus, Bhopal, MP, India</span>
+                    </li>
+                    <li>
+                        <span class="info-icon"><i class="fa-solid fa-phone"></i></span>
+                        <span class="info-text">+91 98765 43210</span>
+                    </li>
+                    <li>
+                        <span class="info-icon"><i class="fa-solid fa-envelope"></i></span>
+                        <span class="info-text">info@theghazalroom.com</span>
+                    </li>
+                    <li>
+                        <span class="info-icon"><i class="fa-solid fa-clock"></i></span>
+                        <span class="info-text">Classes: Mon - Sat (3:00 PM - 8:00 PM)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>&copy; 2026 Echoes of Music by Tanu Harode. All Rights Reserved.</p>
+                <div class="footer-meta-links">
+                    <a href="{{ url_for('admin_dashboard') }}">Admin Area</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Interaction Script -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

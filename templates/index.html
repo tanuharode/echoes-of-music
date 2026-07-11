@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-container container">
+        <div class="hero-content fade-in-up">
+            <span class="hero-badge">Akashvani Graded Vocalist</span>
+            <h1>Soulful Ghazals & Hindustani Classical Music</h1>
+            <p>Welcome to <strong>Echoes of Music</strong>, a sacred musical space where classical traditions meet contemporary emotion, led by renowned artist and educator <strong>Tanu Harode</strong>.</p>
+            <div class="hero-actions">
+                <a href="{{ url_for('contact') }}#booking-section" class="btn btn-gold btn-lg"><i class="fa-solid fa-calendar-check"></i> Book a Class</a>
+                <a href="{{ url_for('shows') }}" class="btn btn-outline btn-lg"><i class="fa-solid fa-music"></i> Explore Shows</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BIO BRIEF / INTRODUCTION -->
+<section class="intro-section section-padding bg-cream">
+    <div class="container intro-grid">
+        <div class="intro-image fade-in-left">
+            <div class="image-frame">
+                <!-- We will generate this elegant graphic/portrait asset later in Step 7 -->
+                <img src="{{ url_for('static', filename='images/about_tanu.png') }}" alt="Tanu Harode Performing" class="img-responsive rounded-shadow">
+                <div class="frame-accent"></div>
+            </div>
+        </div>
+        <div class="intro-text fade-in-right">
+            <span class="section-subtitle">Meet the Artist</span>
+            <h2>Tanu Harode</h2>
+            <p class="highlight-text">Akashvani (All India Radio) Graded Ghazal Singer, MA in Classical Music, and Senior Music Educator.</p>
+            <p>With decades of dedicated riyaaz (practice) and an academic foundation in Indian Classical Vocal, Tanu Harode brings an unparalleled depth of emotion to every performance and lecture. As the resident music instructor at People's International School, she balances academic mentorship with dynamic live concerts across India.</p>
+            <p>Whether you want to master the delicate inflections of a ghazal, understand classical raga frameworks, or host an unforgettable evening of live melody, she welcomes you to her musical sanctuary.</p>
+            <div class="intro-meta">
+                <div class="meta-badge"><i class="fa-solid fa-graduation-cap"></i> MA in Classical Music</div>
+                <div class="meta-badge"><i class="fa-solid fa-radio"></i> Akashvani Graded Artist</div>
+            </div>
+            <a href="{{ url_for('about') }}" class="btn btn-maroon mt-3">Read Full Biography &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- CURATED LIVE SHOWS HIGHLIGHT -->
+<section class="shows-highlight-section section-padding bg-dark text-light">
+    <div class="container">
+        <div class="section-header text-center fade-in-up">
+            <span class="section-subtitle gold-text">Live Performances</span>
+            <h2>Curated Music Concerts & Lounge Evenings</h2>
+            <p class="section-description text-muted">A selection of curated themes designed to elevate private events, corporate functions, festivals, and elite clubs.</p>
+        </div>
+        
+        <div class="shows-highlight-grid">
+            <!-- Show Card 1 -->
+            <div class="show-summary-card fade-in-up">
+                <div class="show-card-icon"><i class="fa-solid fa-moon"></i></div>
+                <h3>Sham-e-Ghazal</h3>
+                <p>An evening of traditional ghazals by legends like Jagjit Singh, Mehdi Hassan, and Farida Khanum, interspersed with classic shayari.</p>
+                <span class="suitability">Best for: Sufi Nights, Corporate Dinners</span>
+            </div>
+
+            <!-- Show Card 3 -->
+            <div class="show-summary-card fade-in-up" style="animation-delay: 0.2s;">
+                <div class="show-card-icon"><i class="fa-solid fa-record-vinyl"></i></div>
+                <h3>Soft Bollywood Night</h3>
+                <p>Melodious retro classics and unplugged versions of acoustic hits from golden eras of Indian Cinema.</p>
+                <span class="suitability">Best for: Weddings, Social Get-Togethers</span>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5 fade-in-up">
+            <a href="{{ url_for('shows') }}" class="btn btn-gold btn-lg">Explore Shows & Pricing</a>
+        </div>
+    </div>
+</section>
+
+<!-- CLASSES HIGHLIGHT -->
+<section class="classes-highlight-section section-padding bg-cream">
+    <div class="container classes-highlight-grid">
+        <div class="classes-highlight-text fade-in-left">
+            <span class="section-subtitle">Vocal Coaching</span>
+            <h2>Nurturing the Next Generation of Vocalists</h2>
+            <p>Learning classical vocal music is not just about hit songs; it is about finding your unique voice, mastering breath control, and feeling the emotion of ragas and lyrics.</p>
+            <ul class="styled-list">
+                <li><i class="fa-solid fa-check-circle"></i> <strong>Individual Guidance:</strong> One-on-one sessions tailored to your pace.</li>
+                <li><i class="fa-solid fa-check-circle"></i> <strong>Group Batches:</strong> Collaborative learning in small interactive batches.</li>
+                <li><i class="fa-solid fa-check-circle"></i> <strong>Hybrid Training:</strong> Convenient online classes and offline studio setups.</li>
+                <li><i class="fa-solid fa-check-circle"></i> <strong>All Skill Levels:</strong> Beginner basics to advanced voice texture refinement.</li>
+            </ul>
+            <a href="{{ url_for('classes') }}" class="btn btn-maroon mt-4">View Timetable & Fees</a>
+        </div>
+        <div class="classes-highlight-cards fade-in-right">
+            <div class="class-feature-card">
+                <span class="feature-icon"><i class="fa-solid fa-microphone-lines"></i></span>
+                <div>
+                    <h4>Ghazal & Semi-Classical Voice Culture</h4>
+                    <p>Techniques to master Urdu pronunciation, murkis, and the delicate expressions of Ghazal singing.</p>
+                </div>
+            </div>
+            <div class="class-feature-card">
+                <span class="feature-icon"><i class="fa-solid fa-book-open-reader"></i></span>
+                <div>
+                    <h4>Hindustani Classical Curriculum</h4>
+                    <p>Systematic study of Alankars, Ragas, and Thaat divisions following classical music board certifications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS SECTION -->
+<section class="testimonials-section section-padding bg-maroon text-light">
+    <div class="container">
+        <div class="section-header text-center fade-in-up">
+            <span class="section-subtitle gold-text">Reviews & Appreciation</span>
+            <h2>Words from Students & Concert Audiences</h2>
+        </div>
+        
+        <!-- Slider Shell -->
+        <div class="testimonial-slider-container fade-in-up">
+            <div class="testimonial-slider" id="testimonialSlider">
+                <!-- Slide 1 -->
+                <div class="testimonial-slide active">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"Tanu Ma'am has completely transformed my singing. Her attention to detail with classical notes and Urdu dictions is incredible. Under her tutelage, my confidence on stage has soared!"</p>
+                    <div class="testimonial-author">
+                        <h5>Aarav Mehta</h5>
+                        <span>Ghazal Student (Online Batch)</span>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"We hosted Tanu for our corporate gala's Sham-e-Ghazal. The performance was captivating. Every guest stayed spellbound till the final note. Her explanation of sher-o-shayari before each song was wonderful."</p>
+                    <div class="testimonial-author">
+                        <h5>Meenakshi Sharma</h5>
+                        <span>Event Manager, Zenith Corp</span>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"Her group classes are interactive and highly structured. She handles beginners with extreme patience. My daughter has been learning for 2 years and the difference in her vocal range is exceptional."</p>
+                    <div class="testimonial-author">
+                        <h5>Rajesh K.</h5>
+                        <span>Parent of Student</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controls -->
+            <div class="slider-controls">
+                <button class="slider-arrow prev-arrow" id="prevTestimonial" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+                <button class="slider-arrow next-arrow" id="nextTestimonial" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUICK ACTION CTA BANNER -->
+<section class="quick-cta-section bg-gold text-dark section-padding">
+    <div class="container text-center fade-in-up">
+        <h2>Bring Soulful Music to Your Space</h2>
+        <p class="lead">Ready to start your vocal journey or host Tanu Harode for an unforgettable live musical evening?</p>
+        <div class="cta-buttons-group">
+            <a href="{{ url_for('contact') }}#booking-section" class="btn btn-dark btn-lg">Book a Show or Class Now</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

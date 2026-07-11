@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- HEADER BANNER -->
+<section class="page-banner">
+    <div class="banner-overlay"></div>
+    <div class="container banner-container text-center">
+        <h1 class="fade-in-up">Contact & Bookings</h1>
+        <p class="fade-in-up" style="animation-delay: 0.1s;">Get in touch for training sessions or performance dates</p>
+    </div>
+</section>
+
+<!-- CONTACT & DETAILS -->
+<section class="contact-details-section section-padding bg-cream">
+    <div class="container contact-details-grid">
+        
+        <!-- Info Cards -->
+        <div class="contact-info-cards fade-in-left">
+            <h2>Reach Out Directly</h2>
+            <p>If you have direct inquiries regarding corporate concert bookings, institutional workshops, or custom school music curricula, please connect with us through any of the channels below.</p>
+            
+            <div class="card-details-wrapper">
+                <!-- Phone -->
+                <div class="info-card-item">
+                    <span class="card-icon"><i class="fa-solid fa-phone"></i></span>
+                    <div>
+                        <h4>Phone & Call Hours</h4>
+                        <p class="card-info-text">+91 98765 43210</p>
+                        <small>Calling hours: Mon - Sat, 10:00 AM - 7:00 PM (IST)</small>
+                    </div>
+                </div>
+                <!-- WhatsApp -->
+                <div class="info-card-item">
+                    <span class="card-icon"><i class="fa-brands fa-whatsapp-square"></i></span>
+                    <div>
+                        <h4>WhatsApp Connect</h4>
+                        <p class="card-info-text"><a href="https://wa.me/919876543210" target="_blank">Chat on WhatsApp</a></p>
+                        <small>For quick answers about admission or performance quotes.</small>
+                    </div>
+                </div>
+                <!-- Email -->
+                <div class="info-card-item">
+                    <span class="card-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
+                    <div>
+                        <h4>Official Email Address</h4>
+                        <p class="card-info-text">info@theghazalroom.com</p>
+                        <small>For event contract riders and institutional proposals.</small>
+                    </div>
+                </div>
+                <!-- Location -->
+                <div class="info-card-item">
+                    <span class="card-icon"><i class="fa-solid fa-building-user"></i></span>
+                    <div>
+                        <h4>Studio Address</h4>
+                        <p class="card-info-text">People's International School Campus, Bhanpur, Bhopal, Madhya Pradesh - 462037</p>
+                        <small>Visits by prior appointments only.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map and Social Section -->
+        <div class="contact-map-wrapper fade-in-right">
+            <h3>Our Studio Location</h3>
+            <p class="mb-3">Located in the scenic campus of People's International School in Bhopal.</p>
+            
+            <!-- Map Placeholder Frame styled elegantly in CSS -->
+            <div class="map-placeholder-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3664.887208465063!2d77.43859667615017!3d23.28353840656041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1m2s0x397c6999a0000001%3A0xe54d241e17d7bbf6!2sPeople&#39;s%20Public%20School%20Bhopal!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="300" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            
+            <div class="social-box mt-4">
+                <h4>Follow Tanu Harode</h4>
+                <div class="contact-socials">
+                    <a href="https://facebook.com" target="_blank" class="facebook-link"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                    <a href="https://instagram.com" target="_blank" class="instagram-link"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a href="https://youtube.com" target="_blank" class="youtube-link"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FORMS CONTAINER SECTION -->
+<section class="forms-split-section section-padding bg-white" id="booking-section">
+    <div class="container forms-split-grid">
+        
+        <!-- Booking Form Card -->
+        <div class="form-container-card fade-in-left">
+            <span class="card-tag">Online Booking</span>
+            <h2>Book a Class or Show</h2>
+            <p>Schedule your vocal audition or lock in dates for a musical concert. Select the category and options below.</p>
+            
+            <form action="{{ url_for('submit_booking') }}" method="POST" class="booking-active-form" id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookName">Your Name <span class="required">*</span></label>
+                        <input type="text" name="name" id="bookName" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+                <div class="form-row-2col">
+                    <div class="form-group">
+                        <label for="bookPhone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" name="phone" id="bookPhone" placeholder="Mobile number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookEmail">Email Address</label>
+                        <input type="email" name="email" id="bookEmail" placeholder="Email (optional)">
+                    </div>
+                </div>
+                <div class="form-row-2col">
+                    <div class="form-group">
+                        <label for="bookingType">Booking Category <span class="required">*</span></label>
+                        <select name="booking_type" id="bookingType" required>
+                            <option value="" disabled selected>-- Select Category --</option>
+                            <option value="Class">Music Training / Class</option>
+                            <option value="Show">Live Concert / Performance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventName">Selection Option <span class="required">*</span></label>
+                        <select name="event_name" id="eventName" required>
+                            <option value="" disabled selected>-- Select Type First --</option>
+                            <!-- Dynamically loaded in JavaScript based on Type choice -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Start / Event Date <span class="required">*</span></label>
+                        <input type="date" name="preferred_date" id="preferredDate" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookMessage">Special Notes or Requests</label>
+                        <textarea name="message" id="bookMessage" rows="4" placeholder="Briefly describe your skill level (for classes) or venue scale & size (for shows)..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-gold btn-full-width mt-3">Submit Booking Request</button>
+            </form>
+        </div>
+        
+        <!-- General Query Form Card -->
+        <div class="form-container-card fade-in-right">
+            <span class="card-tag">Queries</span>
+            <h2>Send a Quick Message</h2>
+            <p>For feedback, school inquiries, or standard question submissions, drop a message and our team will reply via email.</p>
+            
+            <form action="{{ url_for('submit_contact') }}" method="POST" class="contact-active-form" id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactName">Your Name <span class="required">*</span></label>
+                        <input type="text" name="name" id="contactName" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactEmail">Email Address <span class="required">*</span></label>
+                        <input type="email" name="email" id="contactEmail" placeholder="Enter your email address" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactMessage">Your Message <span class="required">*</span></label>
+                        <textarea name="message" id="contactMessage" rows="6" placeholder="Type your query or comments here..." required></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-maroon btn-full-width mt-4">Send Message</button>
+            </form>
+        </div>
+        
+    </div>
+</section>
+{% endblock %}

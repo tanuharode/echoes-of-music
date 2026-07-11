@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- HEADER BANNER -->
+<section class="page-banner bg-maroon-dark">
+    <div class="banner-overlay"></div>
+    <div class="container banner-container text-center">
+        <h1 class="fade-in-up">Admin Database Dashboard</h1>
+        <p class="fade-in-up" style="animation-delay: 0.1s;">Evaluate and verify form submissions stored in SQLite</p>
+    </div>
+</section>
+
+<!-- SUBMISSIONS SUMMARY & TABLES -->
+<section class="admin-dashboard-section section-padding bg-cream">
+    <div class="container">
+        
+        <!-- COUNTERS CARDS -->
+        <div class="admin-counters-grid mb-5 fade-in-up">
+            <div class="counter-card">
+                <h3>{{ bookings|length }}</h3>
+                <p>Booking Requests</p>
+            </div>
+            <div class="counter-card">
+                <h3>{{ messages|length }}</h3>
+                <p>Contact Messages</p>
+            </div>
+        </div>
+        
+        <!-- BOOKINGS LISTING -->
+        <div class="admin-table-wrapper mb-5 fade-in-up">
+            <div class="table-header-flex">
+                <h2><i class="fa-solid fa-calendar-check gold-text"></i> Booking Requests</h2>
+                <span class="count-badge bg-gold text-dark">{{ bookings|length }} entries</span>
+            </div>
+            <div class="table-responsive bg-white rounded-shadow">
+                {% if bookings %}
+                    <table class="admin-data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Phone / Email</th>
+                                <th>Category</th>
+                                <th>Choice Selection</th>
+                                <th>Preferred Date</th>
+                                <th>Special Notes</th>
+                                <th>Submitted On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                                <tr>
+                                    <td><strong>{{ booking.id }}</strong></td>
+                                    <td>{{ booking.name }}</td>
+                                    <td>
+                                        <div><i class="fa-solid fa-phone text-muted"></i> {{ booking.phone }}</div>
+                                        {% if booking.email %}
+                                            <div class="small text-muted"><i class="fa-solid fa-envelope"></i> {{ booking.email }}</div>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <span class="category-pill {% if booking.booking_type == 'Class' %}pill-class{% else %}pill-show{% endif %}">
+                                            {{ booking.booking_type }}
+                                        </span>
+                                    </td>
+                                    <td><strong>{{ booking.event_name }}</strong></td>
+                                    <td><span class="date-highlight">{{ booking.preferred_date }}</span></td>
+                                    <td class="table-notes-cell">{{ booking.message or '-' }}</td>
+                                    <td><small class="text-muted">{{ booking.created_at.strftime('%Y-%m-%d %H:%M') }}</small></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="empty-state text-center p-5">
+                        <i class="fa-solid fa-folder-open text-muted size-lg"></i>
+                        <p class="mt-2 text-muted">No booking requests found in database.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- MESSAGES LISTING -->
+        <div class="admin-table-wrapper fade-in-up">
+            <div class="table-header-flex">
+                <h2><i class="fa-solid fa-message gold-text"></i> Contact Messages</h2>
+                <span class="count-badge bg-maroon text-light">{{ messages|length }} entries</span>
+            </div>
+            <div class="table-responsive bg-white rounded-shadow">
+                {% if messages %}
+                    <table class="admin-data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                                <th>Submitted On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for msg in messages %}
+                                <tr>
+                                    <td><strong>{{ msg.id }}</strong></td>
+                                    <td>{{ msg.name }}</td>
+                                    <td><a href="mailto:{{ msg.email }}" class="email-link"><i class="fa-solid fa-envelope"></i> {{ msg.email }}</a></td>
+                                    <td class="table-notes-cell">{{ msg.message }}</td>
+                                    <td><small class="text-muted">{{ msg.created_at.strftime('%Y-%m-%d %H:%M') }}</small></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="empty-state text-center p-5">
+                        <i class="fa-solid fa-folder-open text-muted size-lg"></i>
+                        <p class="mt-2 text-muted">No contact messages found in database.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<!-- BACK TO SITE BUTTON -->
+<div class="container text-center pb-5">
+    <a href="{{ url_for('index') }}" class="btn btn-outline-dark"><i class="fa-solid fa-circle-arrow-left"></i> Return to Main Website</a>
+</div>
+{% endblock %}

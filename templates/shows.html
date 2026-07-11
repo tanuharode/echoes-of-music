@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- HEADER BANNER -->
+<section class="page-banner">
+    <div class="banner-overlay"></div>
+    <div class="container banner-container text-center">
+        <h1 class="fade-in-up">Curated Live Music Shows</h1>
+        <p class="fade-in-up" style="animation-delay: 0.1s;">Elevate your gatherings with customized, high-profile musical themes</p>
+    </div>
+</section>
+
+<!-- SHOW CARDS SECTION -->
+<section class="shows-list-section section-padding bg-cream">
+    <div class="container">
+        <div class="section-header text-center fade-in-up">
+            <span class="section-subtitle">Performance Themes</span>
+            <h2>Select a Concert for Your Event</h2>
+            <p class="section-description">Tanu Harode collaborates with seasoned instrumentalists (Tablists, Pianists, Guitarists, Violinists) to bring you live concerts tailored to your audience's size and musical taste.</p>
+        </div>
+        
+        <div class="shows-detailed-grid">
+            <!-- Event Card 1: Sham-e-Ghazal -->
+            <div class="show-detail-card fade-in-up">
+                <div class="show-card-image-placeholder bg-maroon text-light">
+                    <!-- We will render/display beautiful design elements in CSS -->
+                    <i class="fa-solid fa-moon card-watermark"></i>
+                    <span class="show-badge">Most Popular</span>
+                    <h3>Sham-e-Ghazal</h3>
+                    <p class="show-card-tagline">Classic Poetry & Soulful Gazals</p>
+                </div>
+                <div class="show-card-body">
+                    <p class="show-desc">An intimate, immersive concert presenting classical and modern ghazals by legendary masters. The performance is enriched with explanations of the Urdu couplets (Ash'aar) so that every listener connects deeply with the emotion of the lyrics.</p>
+                    
+                    <div class="show-meta-specs">
+                        <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-users"></i> Best Suited For:</span>
+                            <span class="spec-val">Sufi Nights, Festivals, Elite Club Events, Private Soirees</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-clock"></i> Duration:</span>
+                            <span class="spec-val">120 - 150 Minutes</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-indian-rupee-sign"></i> Starting Price:</span>
+                            <span class="spec-val gold-text">₹25,000 <small>(Local) / Contact for travel setups</small></span>
+                        </div>
+                    </div>
+                    
+                    <div class="show-card-footer">
+                        <a href="{{ url_for('contact') }}?type=Show&select=Sham-e-Ghazal#booking-section" class="btn btn-maroon btn-full-width">Book Sham-e-Ghazal</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Event Card 3: Soft Bollywood Night -->
+            <div class="show-detail-card fade-in-up" style="animation-delay: 0.2s;">
+                <div class="show-card-image-placeholder bg-gold text-dark">
+                    <i class="fa-solid fa-music card-watermark"></i>
+                    <span class="show-badge bg-dark text-light">Melodious Retro</span>
+                    <h3>Soft Bollywood Night</h3>
+                    <p class="show-card-tagline">Unplugged Golden Hits</p>
+                </div>
+                <div class="show-card-body">
+                    <p class="show-desc">Take a trip down memory lane. This show presents soft, unplugged covers of Hindi cinema's most melodic masterpieces from legends like Lata Mangeshkar, Kishore Kumar, Madan Mohan, and A.R. Rahman.</p>
+                    
+                    <div class="show-meta-specs">
+                        <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-users"></i> Best Suited For:</span>
+                            <span class="spec-val">Weddings, Anniversaries, Sangeet, Social Banquets</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-clock"></i> Duration:</span>
+                            <span class="spec-val">120 - 180 Minutes</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-indian-rupee-sign"></i> Starting Price:</span>
+                            <span class="spec-val gold-text">₹20,000 <small>(Custom setups available)</small></span>
+                        </div>
+                    </div>
+                    
+                    <div class="show-card-footer">
+                        <a href="{{ url_for('contact') }}?type=Show&select=Soft-Bollywood-Night#booking-section" class="btn btn-maroon btn-full-width">Book Soft Bollywood</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 4: Light Music Evening -->
+            <div class="show-detail-card fade-in-up" style="animation-delay: 0.3s;">
+                <div class="show-card-image-placeholder bg-maroon-dark text-light">
+                    <i class="fa-solid fa-guitar card-watermark"></i>
+                    <span class="show-badge">Versatile Choice</span>
+                    <h3>Light Music Evening</h3>
+                    <p class="show-card-tagline">Semi-Classical & Folk Journeys</p>
+                </div>
+                <div class="show-card-body">
+                    <p class="show-desc">A versatile musical showcase covering semi-classical pieces, soulful Bhajans, Sufi songs, and regional Indian folk compositions (such as Kajri and Jhoola). Expressive, interactive, and culturally rich.</p>
+                    
+                    <div class="show-meta-specs">
+                        <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-users"></i> Best Suited For:</span>
+                            <span class="spec-val">Festivals, Spiritual Gatherings, Community Events</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-clock"></i> Duration:</span>
+                            <span class="spec-val">120 Minutes</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-indian-rupee-sign"></i> Starting Price:</span>
+                            <span class="spec-val gold-text">₹18,000 <small>(Flexible instrumentation)</small></span>
+                        </div>
+                    </div>
+                    
+                    <div class="show-card-footer">
+                        <a href="{{ url_for('contact') }}?type=Show&select=Light-Music-Evening#booking-section" class="btn btn-maroon btn-full-width">Book Light Music</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GENERAL RIDER NOTES -->
+<section class="rider-info-section section-padding bg-white">
+    <div class="container technical-rider-grid">
+        <div class="rider-text fade-in-left">
+            <h2>Technical & Performance Details</h2>
+            <p>To ensure the highest acoustic experience, we provide a complete technical blueprint (Rider) for events. Depending on the venue size and show type, the following details are coordinated:</p>
+            <ul class="styled-list">
+                <li><i class="fa-solid fa-check"></i> <strong>Acoustics:</strong> High-grade vocal and instrument microphones (Shure/Sennheiser) and professional sound mixing consoles are required.</li>
+                <li><i class="fa-solid fa-check"></i> <strong>Accompaniment:</strong> Custom combinations of Harmonium, Tabla, Keyboard, Flute, or Acoustic Guitar can be arranged.</li>
+                <li><i class="fa-solid fa-check"></i> <strong>Travel & Lodging:</strong> For performances outside Bhopal, travel expenses (flight/train tickets) and standard double-room lodging for the band are coordinated by the host.</li>
+            </ul>
+        </div>
+        <div class="rider-box fade-in-right">
+            <h3>Need a Custom Theme?</h3>
+            <p>If you would like to combine classical ghazals with soft vintage Bollywood hits, or require a specialized devotional bhajan performance, we can structure a customized setlist for your theme.</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-gold btn-full-width text-center">Discuss Custom Setlists</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- HEADER BANNER -->
+<section class="page-banner">
+    <div class="banner-overlay"></div>
+    <div class="container banner-container text-center">
+        <h1 class="fade-in-up">About Tanu Harode</h1>
+        <p class="fade-in-up" style="animation-delay: 0.1s;">A lifetime dedicated to the art of Hindustani Classical Vocal & Soulful Ghazals</p>
+    </div>
+</section>
+
+<!-- BIO DETAILED -->
+<section class="about-detailed-section section-padding bg-cream">
+    <div class="container about-grid">
+        <div class="about-text-content fade-in-left">
+            <h2>The Journey of a Classical Vocalist</h2>
+            <p class="lead-text">Tanu Harode is a distinguished vocalist and educator who has spent over two decades cultivating the classical and semi-classical music traditions of India.</p>
+            
+            <p>From early childhood, Tanu showed a natural affinity for melody and rhythm. She pursued this passion academically, securing her <strong>Master of Arts (MA) in Classical Vocal Music</strong>. This rigorous academic grounding, paired with standard traditional Guru-Shishya training, shaped her understanding of Raga aesthetics, voice culture, and the art of voice modulation.</p>
+            
+            <p>Her signature style is marked by a deep, resonant vocal texture and absolute clarity in pitch (Sur). She specializes in the classical framework of <em>Khayal</em>, as well as light classical forms such as <em>Thumri</em>, <em>Dadra</em>, and <em>Bhajans</em>. However, it is in her rendition of <strong>Ghazals</strong> that she finds her true calling—blending classical ragas with deep Urdu poetry (Shayari) to create a spiritual bond with her listeners.</p>
+
+            <blockquote class="accent-quote">
+                "Music is not merely sound; it is a conversation between the soul and the divine. A ghazal is the bridge of words and melody that carries this conversation."
+                <cite>— Tanu Harode</cite>
+            </blockquote>
+        </div>
+        
+        <div class="about-sidebar fade-in-right">
+            <!-- Artist Portrait Image Frame -->
+            <div class="sidebar-image-container">
+                <img src="{{ url_for('static', filename='images/about_tanu.png') }}" alt="Tanu Harode Portrait" class="img-responsive rounded-shadow">
+                <div class="sidebar-accent-border"></div>
+            </div>
+            
+            <!-- Quick Facts Card -->
+            <div class="sidebar-card">
+                <h3>Artist Overview</h3>
+                <ul class="facts-list">
+                    <li>
+                        <strong>Grading:</strong>
+                        <span>Akashvani (All India Radio) Graded Artist</span>
+                    </li>
+                    <li>
+                        <strong>Education:</strong>
+                        <span>MA in Indian Classical Vocal Music</span>
+                    </li>
+                    <li>
+                        <strong>Affiliation:</strong>
+                        <span>Senior Music Instructor at People's International School, Bhopal</span>
+                    </li>
+                    <li>
+                        <strong>Experience:</strong>
+                        <span>15+ Years teaching & performing</span>
+                    </li>
+                    <li>
+                        <strong>Specializations:</strong>
+                        <span>Ghazals, Light Classical, Voice Culture, Raga improvisation</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DETAILED CREDENTIALS & MILESTONES -->
+<section class="credentials-timeline section-padding bg-white">
+    <div class="container">
+        <div class="section-header text-center fade-in-up">
+            <span class="section-subtitle">Milestones & Achievements</span>
+            <h2>Distinctions & Education</h2>
+        </div>
+        
+        <div class="timeline-container">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item fade-in-up">
+                <div class="timeline-badge"><i class="fa-solid fa-radio"></i></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">Akashvani Recognition</span>
+                    <h3>All India Radio Graded Artist</h3>
+                    <p>Awarded an official artist grading by Akashvani (All India Radio) in Ghazal singing. This prestigious national distinction recognizes consistent vocal purity, artistic integrity, and dedication to the preservation of Indian semi-classical music. Her recitals are periodically broadcasted on regional radio stations.</p>
+                </div>
+            </div>
+            
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item fade-in-up" style="animation-delay: 0.1s;">
+                <div class="timeline-badge"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">Academic Credentials</span>
+                    <h3>MA in Classical Vocal Music</h3>
+                    <p>Completed her postgraduate studies in Hindustani Classical Vocal Music. The program provided rigorous theoretical and practical training in complex Ragas, ancient classical compositions, musicology, and performance dynamics.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item fade-in-up" style="animation-delay: 0.2s;">
+                <div class="timeline-badge"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">Academic Pedagogy</span>
+                    <h3>Music Instructor at People's International School</h3>
+                    <p>Serves as the lead music coach and director of cultural performing arts at People's International School. In this role, she designs foundational vocal curricula, coaches young talents for national competitions, and directs large-scale choral and theatrical showcases.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY LINK BANNER -->
+<section class="about-cta-section bg-maroon text-light section-padding text-center">
+    <div class="container fade-in-up">
+        <h2>Experience the Magic Live</h2>
+        <p>Take a look at Tanu Harode's performance highlights, concert recordings, and class workshops.</p>
+        <div class="cta-buttons-group">
+            <a href="{{ url_for('gallery') }}" class="btn btn-gold btn-lg"><i class="fa-solid fa-images"></i> View Performance Gallery</a>
+            <a href="{{ url_for('contact') }}#booking-section" class="btn btn-outline-light btn-lg"><i class="fa-solid fa-envelope"></i> Get In Touch</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
