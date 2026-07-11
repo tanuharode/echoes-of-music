@@ -13,9 +13,30 @@ app = Flask(__name__)
 # Security configuration (Secret key is required for session-based Flash messages)
 app.config['SECRET_KEY'] = 'echoes_of_music_tanu_harode_secret_key_2026'
 
-# SQLite Database path configuration
-db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'database.db')
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+# Database configuration (support PostgreSQL via env vars or SQLite fallback)
+postgres_url = os.environ.get('DATABASE_URL') or os.environ.get('POSTGRES_URL')
+if postgres_url:
+    # SQLAlchemy requires 'postgresql://' instead of 'postgres://'
+    if postgres_url.startswith('postgres://'):
+        postgres_url = postgres_url.replace('postgres://', 'postgresql://', 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = postgres_url
+else:
+    import shutil
+    import tempfile
+    # Check if running in Vercel serverless environment
+    if os.environ.get('VERCEL'):
+        db_path = os.path.join(tempfile.gettempdir(), 'database.db')
+        local_db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'database.db')
+        # Copy the pre-existing database to temp if it exists and hasn't been copied yet
+        if os.path.exists(local_db_path) and not os.path.exists(db_path):
+            try:
+                shutil.copy2(local_db_path, db_path)
+            except Exception as e:
+                print(f"Error copying database to temp: {e}")
+    else:
+        db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'database.db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
