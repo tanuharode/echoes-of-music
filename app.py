@@ -81,6 +81,19 @@ class BookingRequest(db.Model):
         return f'<BookingRequest {self.name} - {self.booking_type} ({self.event_name})>'
 
 
+class SiteSetting(db.Model):
+    """
+    Database model to store key-value configurations for the site (e.g., contact info, social links, class timings).
+    """
+    __tablename__ = 'site_settings'
+    
+    key = db.Column(db.String(50), primary_key=True)
+    value = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return f'<SiteSetting {self.key}: {self.value}>'
+
+
 # ==============================================================================
 # ROUTES & CONTROLLERS
 # ==============================================================================
@@ -254,6 +267,39 @@ def submit_booking():
 # ADMIN VIEW (FOR EASY VERIFICATION OF FORM ENTRIES)
 # ==============================================================================
 
+@app.context_processor
+def inject_site_settings():
+    """
+    Injects site settings dynamically into all templates.
+    """
+    defaults = {
+        'phone': '+91 62613 16204',
+        'whatsapp': '916261316204',
+        'email': 'tanuharode6@gmail.com',
+        'address': 'H.N.-9, Indraprasth Colony, Hinotiya Chandbad, Bhopal - 462010',
+        'classes_timing': 'Classes: Mon - Sat (4:00 PM - 8:00 PM)',
+        'individual_classes_timing': 'By Appointment (4:00 PM - 8:00 PM)',
+        'instagram': 'https://www.instagram.com/tanuharode22?igsh=ZWw2ZGU0YnZtaHE0&utm_source=qr',
+        'youtube': 'https://youtube.com/@tanusinger4291?si=TycISPb_y-fcl17v',
+        'facebook': 'https://facebook.com',
+        'bio_brief': 'Tanu Harode is a distinguished vocalist and educator who has spent over two decades cultivating the classical and semi-classical music traditions of India.',
+        'bio_specializations': 'Ghazals, Light Music, Voice Culture, Bollywood Music, Riyaz Sessions, Karaoke Music, Ornamentation, Stage Performance, Raga Improvisation'
+    }
+    
+    settings = {}
+    try:
+        db_settings = SiteSetting.query.all()
+        settings = {s.key: s.value for s in db_settings}
+    except Exception as e:
+        print(f"Error loading settings from DB: {e}")
+        
+    final_settings = {}
+    for key, def_val in defaults.items():
+        final_settings[key] = settings.get(key, def_val)
+        
+    return dict(site_settings=final_settings)
+
+
 @app.route('/admin/dashboard')
 def admin_dashboard():
     """
@@ -265,6 +311,37 @@ def admin_dashboard():
     return render_template('admin.html', messages=messages, bookings=bookings, title="Admin Dashboard")
 
 
+@app.route('/admin/settings', methods=['POST'])
+def update_settings():
+    """
+    Handle update of site settings from the admin dashboard.
+    """
+    try:
+        keys = [
+            'phone', 'whatsapp', 'email', 'address', 'classes_timing', 
+            'individual_classes_timing', 'instagram', 'youtube', 'facebook', 
+            'bio_brief', 'bio_specializations'
+        ]
+        
+        for key in keys:
+            val = request.form.get(key)
+            if val is not None:
+                setting = db.session.get(SiteSetting, key)
+                if not setting:
+                    setting = SiteSetting(key=key, value=val)
+                    db.session.add(setting)
+                else:
+                    setting.value = val
+                    
+        db.session.commit()
+        flash("Site settings updated successfully!", "success")
+    except Exception as e:
+        db.session.rollback()
+        flash(f"An error occurred while updating settings: {str(e)}", "error")
+        
+    return redirect(url_for('admin_dashboard'))
+
+
 # ==============================================================================
 # DATABASE INITIALIZATION & RUN
 # ==============================================================================
@@ -272,6 +349,29 @@ def admin_dashboard():
 # Create database tables inside app context
 with app.app_context():
     db.create_all()
+    
+    # Seed default site settings if empty
+    try:
+        defaults = {
+            'phone': '+91 62613 16204',
+            'whatsapp': '916261316204',
+            'email': 'tanuharode6@gmail.com',
+            'address': 'H.N.-9, Indraprasth Colony, Hinotiya Chandbad, Bhopal - 462010',
+            'classes_timing': 'Classes: Mon - Sat (4:00 PM - 8:00 PM)',
+            'individual_classes_timing': 'By Appointment (4:00 PM - 8:00 PM)',
+            'instagram': 'https://www.instagram.com/tanuharode22?igsh=ZWw2ZGU0YnZtaHE0&utm_source=qr',
+            'youtube': 'https://youtube.com/@tanusinger4291?si=TycISPb_y-fcl17v',
+            'facebook': 'https://facebook.com',
+            'bio_brief': 'Tanu Harode is a distinguished vocalist and educator who has spent over two decades cultivating the classical and semi-classical music traditions of India.',
+            'bio_specializations': 'Ghazals, Light Music, Voice Culture, Bollywood Music, Riyaz Sessions, Karaoke Music, Ornamentation, Stage Performance, Raga Improvisation'
+        }
+        for key, value in defaults.items():
+            setting = db.session.get(SiteSetting, key)
+            if not setting:
+                db.session.add(SiteSetting(key=key, value=value))
+        db.session.commit()
+    except Exception as e:
+        print(f"Error seeding default settings: {e}")
 
 if __name__ == '__main__':
     # Run the server on port 5000 in debug mode

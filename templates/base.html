@@ -93,10 +93,10 @@
                     Bringing the rich traditions of Indian Classical Music, light music, and soulful Ghazals closer to your heart. Individual and group sessions available online and offline.
                 </p>
                 <div class="footer-socials">
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://wa.me/919876543210" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="{{ site_settings.facebook }}" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="{{ site_settings.instagram }}" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="{{ site_settings.youtube }}" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
             
@@ -117,19 +117,19 @@
                 <ul class="contact-details-list">
                     <li>
                         <span class="info-icon"><i class="fa-solid fa-location-dot"></i></span>
-                        <span class="info-text">People's International School Campus, Bhopal, MP, India</span>
+                        <span class="info-text">{{ site_settings.address }}</span>
                     </li>
                     <li>
                         <span class="info-icon"><i class="fa-solid fa-phone"></i></span>
-                        <span class="info-text">+91 98765 43210</span>
+                        <span class="info-text">{{ site_settings.phone }}</span>
                     </li>
                     <li>
                         <span class="info-icon"><i class="fa-solid fa-envelope"></i></span>
-                        <span class="info-text">info@theghazalroom.com</span>
+                        <span class="info-text">{{ site_settings.email }}</span>
                     </li>
                     <li>
                         <span class="info-icon"><i class="fa-solid fa-clock"></i></span>
-                        <span class="info-text">Classes: Mon - Sat (3:00 PM - 8:00 PM)</span>
+                        <span class="info-text">{{ site_settings.classes_timing }}</span>
                     </li>
                 </ul>
             </div>

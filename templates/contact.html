@@ -25,7 +25,7 @@
                     <span class="card-icon"><i class="fa-solid fa-phone"></i></span>
                     <div>
                         <h4>Phone & Call Hours</h4>
-                        <p class="card-info-text">+91 98765 43210</p>
+                        <p class="card-info-text">{{ site_settings.phone }}</p>
                         <small>Calling hours: Mon - Sat, 10:00 AM - 7:00 PM (IST)</small>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <span class="card-icon"><i class="fa-brands fa-whatsapp-square"></i></span>
                     <div>
                         <h4>WhatsApp Connect</h4>
-                        <p class="card-info-text"><a href="https://wa.me/919876543210" target="_blank">Chat on WhatsApp</a></p>
+                        <p class="card-info-text"><a href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank">Chat on WhatsApp</a></p>
                         <small>For quick answers about admission or performance quotes.</small>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <span class="card-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
                     <div>
                         <h4>Official Email Address</h4>
-                        <p class="card-info-text">info@theghazalroom.com</p>
+                        <p class="card-info-text">{{ site_settings.email }}</p>
                         <small>For event contract riders and institutional proposals.</small>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     <span class="card-icon"><i class="fa-solid fa-building-user"></i></span>
                     <div>
                         <h4>Studio Address</h4>
-                        <p class="card-info-text">People's International School Campus, Bhanpur, Bhopal, Madhya Pradesh - 462037</p>
+                        <p class="card-info-text">{{ site_settings.address }}</p>
                         <small>Visits by prior appointments only.</small>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
         <!-- Map and Social Section -->
         <div class="contact-map-wrapper fade-in-right">
             <h3>Our Studio Location</h3>
-            <p class="mb-3">Located in the scenic campus of People's International School in Bhopal.</p>
+            <p class="mb-3">Visit our studio or drop by for a class in Bhopal.</p>
             
             <!-- Map Placeholder Frame styled elegantly in CSS -->
             <div class="map-placeholder-box">
@@ -79,9 +79,9 @@
             <div class="social-box mt-4">
                 <h4>Follow Tanu Harode</h4>
                 <div class="contact-socials">
-                    <a href="https://facebook.com" target="_blank" class="facebook-link"><i class="fa-brands fa-facebook"></i> Facebook</a>
-                    <a href="https://instagram.com" target="_blank" class="instagram-link"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                    <a href="https://youtube.com" target="_blank" class="youtube-link"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                    <a href="{{ site_settings.facebook }}" target="_blank" class="facebook-link"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                    <a href="{{ site_settings.instagram }}" target="_blank" class="instagram-link"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a href="{{ site_settings.youtube }}" target="_blank" class="youtube-link"><i class="fa-brands fa-youtube"></i> YouTube</a>
                 </div>
             </div>
         </div>

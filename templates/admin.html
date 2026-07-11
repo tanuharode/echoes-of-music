@@ -119,6 +119,98 @@
             </div>
         </div>
         
+        <!-- UPDATE SITE SETTINGS -->
+        <div class="admin-table-wrapper mt-5 fade-in-up">
+            <div class="table-header-flex">
+                <h2><i class="fa-solid fa-sliders gold-text"></i> Update Website Info & Content</h2>
+                <span class="count-badge bg-gold text-dark">Live Settings</span>
+            </div>
+            
+            <div class="bg-white rounded-shadow p-4">
+                <form action="{{ url_for('update_settings') }}" method="POST" class="admin-settings-form">
+                    <div class="form-grid-2">
+                        <!-- Phone -->
+                        <div class="form-group">
+                            <label for="settingPhone" class="form-label">Phone Number</label>
+                            <input type="text" name="phone" id="settingPhone" class="form-control" value="{{ site_settings.phone }}" required>
+                            <small class="form-text text-muted">Example: +91 62613 16204</small>
+                        </div>
+                        <!-- WhatsApp -->
+                        <div class="form-group">
+                            <label for="settingWhatsApp" class="form-label">WhatsApp Number (For Link)</label>
+                            <input type="text" name="whatsapp" id="settingWhatsApp" class="form-control" value="{{ site_settings.whatsapp }}" required>
+                            <small class="form-text text-muted">Country code + number (no spaces/plus), e.g. 916261316204</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid-3">
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="settingEmail" class="form-label">Official Email Address</label>
+                            <input type="email" name="email" id="settingEmail" class="form-control" value="{{ site_settings.email }}" required>
+                        </div>
+                        <!-- Classes Timings -->
+                        <div class="form-group">
+                            <label for="settingTimings" class="form-label">General Classes Timings</label>
+                            <input type="text" name="classes_timing" id="settingTimings" class="form-control" value="{{ site_settings.classes_timing }}" required>
+                            <small class="form-text text-muted">Example: Classes: Mon - Sat (4:00 PM - 8:00 PM)</small>
+                        </div>
+                        <!-- Individual Classes Timings -->
+                        <div class="form-group">
+                            <label for="settingIndivTimings" class="form-label">Individual Classes Timings</label>
+                            <input type="text" name="individual_classes_timing" id="settingIndivTimings" class="form-control" value="{{ site_settings.individual_classes_timing }}" required>
+                            <small class="form-text text-muted">Example: By Appointment (4:00 PM - 8:00 PM)</small>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-group">
+                        <label for="settingAddress" class="form-label">Studio/Classes Address</label>
+                        <textarea name="address" id="settingAddress" class="form-control" rows="2" required>{{ site_settings.address }}</textarea>
+                    </div>
+
+                    <h3 class="border-bottom pb-2 mt-4"><i class="fa-solid fa-share-nodes"></i> Social Media Profiles</h3>
+                    
+                    <div class="form-grid-3">
+                        <!-- Instagram -->
+                        <div class="form-group">
+                            <label for="settingInstagram" class="form-label">Instagram Profile Link</label>
+                            <input type="url" name="instagram" id="settingInstagram" class="form-control" value="{{ site_settings.instagram }}">
+                        </div>
+                        <!-- YouTube -->
+                        <div class="form-group">
+                            <label for="settingYouTube" class="form-label">YouTube Channel Link</label>
+                            <input type="url" name="youtube" id="settingYouTube" class="form-control" value="{{ site_settings.youtube }}">
+                        </div>
+                        <!-- Facebook -->
+                        <div class="form-group">
+                            <label for="settingFacebook" class="form-label">Facebook Page Link</label>
+                            <input type="url" name="facebook" id="settingFacebook" class="form-control" value="{{ site_settings.facebook }}">
+                        </div>
+                    </div>
+
+                    <h3 class="border-bottom pb-2 mt-4"><i class="fa-solid fa-address-card"></i> Biography & Specializations</h3>
+                    
+                    <!-- Bio Brief -->
+                    <div class="form-group">
+                        <label for="settingBioBrief" class="form-label">Biography Introduction (About Page)</label>
+                        <textarea name="bio_brief" id="settingBioBrief" class="form-control" rows="3" required>{{ site_settings.bio_brief }}</textarea>
+                    </div>
+                    
+                    <!-- Bio Specializations -->
+                    <div class="form-group">
+                        <label for="settingBioSpecs" class="form-label">Specializations (Comma Separated)</label>
+                        <textarea name="bio_specializations" id="settingBioSpecs" class="form-control" rows="2" required>{{ site_settings.bio_specializations }}</textarea>
+                        <small class="form-text text-muted">Listed on the About sidebar, separated by commas.</small>
+                    </div>
+
+                    <div class="mt-4 text-end">
+                        <button type="submit" class="btn btn-gold btn-lg"><i class="fa-solid fa-floppy-disk"></i> Save Configurations</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
     </div>
 </section>
 
@@ -126,4 +218,62 @@
 <div class="container text-center pb-5">
     <a href="{{ url_for('index') }}" class="btn btn-outline-dark"><i class="fa-solid fa-circle-arrow-left"></i> Return to Main Website</a>
 </div>
+
+<style>
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.form-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #4a1525;
+}
+.form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+.form-control:focus {
+    border-color: #d4af37;
+    outline: none;
+    background-color: #fff;
+}
+.border-bottom {
+    border-bottom: 1px solid #eee;
+}
+.pb-2 {
+    padding-bottom: 8px;
+}
+.mt-4 {
+    margin-top: 24px;
+}
+.text-end {
+    text-align: right;
+}
+.p-4 {
+    padding: 30px;
+}
+@media (max-width: 768px) {
+    .form-grid-2, .form-grid-3 {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+</style>
 {% endblock %}
