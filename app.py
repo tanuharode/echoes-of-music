@@ -282,7 +282,7 @@ def inject_site_settings():
         'instagram': 'https://www.instagram.com/tanuharode22?igsh=ZWw2ZGU0YnZtaHE0&utm_source=qr',
         'youtube': 'https://youtube.com/@tanusinger4291?si=TycISPb_y-fcl17v',
         'facebook': 'https://facebook.com',
-        'bio_brief': 'Tanu Harode is a distinguished vocalist and educator who has spent over two decades cultivating the classical and semi-classical music traditions of India.',
+        'bio_brief': 'Tanu Harode is a distinguished vocalist and educator with 6+ years of experience cultivating the classical and semi-classical music traditions of India.',
         'bio_specializations': 'Ghazals, Light Music, Voice Culture, Bollywood Music, Riyaz Sessions, Karaoke Music, Ornamentation, Stage Performance, Raga Improvisation'
     }
     
@@ -362,7 +362,7 @@ with app.app_context():
             'instagram': 'https://www.instagram.com/tanuharode22?igsh=ZWw2ZGU0YnZtaHE0&utm_source=qr',
             'youtube': 'https://youtube.com/@tanusinger4291?si=TycISPb_y-fcl17v',
             'facebook': 'https://facebook.com',
-            'bio_brief': 'Tanu Harode is a distinguished vocalist and educator who has spent over two decades cultivating the classical and semi-classical music traditions of India.',
+            'bio_brief': 'Tanu Harode is a distinguished vocalist and educator with 6+ years of experience cultivating the classical and semi-classical music traditions of India.',
             'bio_specializations': 'Ghazals, Light Music, Voice Culture, Bollywood Music, Riyaz Sessions, Karaoke Music, Ornamentation, Stage Performance, Raga Improvisation'
         }
         for key, value in defaults.items():
