@@ -9,6 +9,39 @@
     <meta name="description" content="Official website of Tanu Harode, an Akashvani graded artist, classical music teacher (MA in Classical Music), and performer. Learn Ghazal & classical singing or book a show.">
     <meta name="keywords" content="Tanu Harode, Echoes of Music, Sham-e-Ghazal, music teacher, classical vocal coach, Akashvani artist, classical singer, People's International School">
     <meta name="author" content="Tanu Harode">
+    <link rel="canonical" href="{{ request.url }}" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="{% if title %}{{ title }}{% else %}Echoes of Music{% endif %}" />
+    <meta property="og:description" content="{{ site_settings.bio_brief }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ request.url }}" />
+    <meta property="og:image" content="{{ url_for('static', filename='images/og-image.jpg') }}" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{% if title %}{{ title }}{% else %}Echoes of Music{% endif %}" />
+    <meta name="twitter:description" content="{{ site_settings.bio_brief }}" />
+    <meta name="twitter:image" content="{{ url_for('static', filename='images/og-image.jpg') }}" />
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "{{ request.url_root }}",
+      "name": "Echoes of Music by Tanu Harode",
+      "logo": "{{ url_for('static', filename='images/logo.png') }}",
+      "sameAs": [
+        "{{ site_settings.facebook }}",
+        "{{ site_settings.instagram }}",
+        "{{ site_settings.youtube }}"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+{{ site_settings.whatsapp }}",
+        "contactType": "Customer Service",
+        "areaServed": "IN"
+      }
+    }
+    </script>
     
     <!-- Google Fonts: Elegant Serif (Playfair Display) for headers, clean Sans-Serif (Inter) for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

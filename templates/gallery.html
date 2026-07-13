@@ -29,83 +29,33 @@
         
         <!-- Image Grid -->
         <div class="gallery-grid fade-in-up">
-            <!-- Item 1 -->
-            <div class="gallery-item" data-category="concerts" data-index="0">
-                <img src="{{ url_for('static', filename='images/gallery_1.png') }}" alt="Live Performance at Concert Hall" class="img-responsive">
+            {% for img in images %}
+            <!-- Dynamic Item -->
+            <div class="gallery-item" data-category="{{ img.category }}">
+                <img src="{{ img.url }}" alt="{{ img.alt_text or img.title }}" class="img-responsive">
                 <div class="gallery-item-overlay">
                     <div class="overlay-content">
-                        <span class="img-category">Concert</span>
-                        <h4>Concert Hall Performance</h4>
-                        <p class="img-date">Bhopal - Oct 2025</p>
+                        <span class="img-category">
+                            {% if img.category == 'concerts' %}
+                                Concert
+                            {% elif img.category == 'classes' %}
+                                Class
+                            {% else %}
+                                Mehfil
+                            {% endif %}
+                        </span>
+                        <h4>{{ img.title }}</h4>
+                        <p class="img-date">{{ img.date_text or '' }}</p>
                         <span class="zoom-icon"><i class="fa-solid fa-maximize"></i></span>
                     </div>
                 </div>
             </div>
-            
-            <!-- Item 2 -->
-            <div class="gallery-item" data-category="classes" data-index="1">
-                <img src="{{ url_for('static', filename='images/gallery_2.png') }}" alt="Vocal Class Session" class="img-responsive">
-                <div class="gallery-item-overlay">
-                    <div class="overlay-content">
-                        <span class="img-category">Class</span>
-                        <h4>Classical Voice Practice</h4>
-                        <p class="img-date">Studio - Nov 2025</p>
-                        <span class="zoom-icon"><i class="fa-solid fa-maximize"></i></span>
-                    </div>
-                </div>
+            {% else %}
+            <div class="text-center p-5 w-100">
+                <i class="fa-solid fa-images text-muted size-lg"></i>
+                <p class="mt-2 text-muted">No images in the gallery yet.</p>
             </div>
-            
-            <!-- Item 3 -->
-            <div class="gallery-item" data-category="mehfils" data-index="2">
-                <img src="{{ url_for('static', filename='images/gallery_3.png') }}" alt="Intimate Sham-e-Ghazal Session" class="img-responsive">
-                <div class="gallery-item-overlay">
-                    <div class="overlay-content">
-                        <span class="img-category">Mehfil</span>
-                        <h4>Sham-e-Ghazal Soiree</h4>
-                        <p class="img-date">Private Lounge - Dec 2025</p>
-                        <span class="zoom-icon"><i class="fa-solid fa-maximize"></i></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Item 4 -->
-            <div class="gallery-item" data-category="concerts" data-index="3">
-                <img src="{{ url_for('static', filename='images/gallery_4.png') }}" alt="Accompanist Team on Stage" class="img-responsive">
-                <div class="gallery-item-overlay">
-                    <div class="overlay-content">
-                        <span class="img-category">Concert</span>
-                        <h4>Stage Setup & Harmonium</h4>
-                        <p class="img-date">Mumbai - Jan 2026</p>
-                        <span class="zoom-icon"><i class="fa-solid fa-maximize"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 5 -->
-            <div class="gallery-item" data-category="classes" data-index="4">
-                <img src="{{ url_for('static', filename='images/gallery_5.png') }}" alt="Tanu Harode teaching school students" class="img-responsive">
-                <div class="gallery-item-overlay">
-                    <div class="overlay-content">
-                        <span class="img-category">School</span>
-                        <h4>School Choir Training</h4>
-                        <p class="img-date">People's International - Feb 2026</p>
-                        <span class="zoom-icon"><i class="fa-solid fa-maximize"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 6 -->
-            <div class="gallery-item" data-category="mehfils" data-index="5">
-                <img src="{{ url_for('static', filename='images/gallery_6.png') }}" alt="Light Classical Evening Setup" class="img-responsive">
-                <div class="gallery-item-overlay">
-                    <div class="overlay-content">
-                        <span class="img-category">Mehfil</span>
-                        <h4>Light Classical Mehfil</h4>
-                        <p class="img-date">Outdoor Lawn - March 2026</p>
-                        <span class="zoom-icon"><i class="fa-solid fa-maximize"></i></span>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

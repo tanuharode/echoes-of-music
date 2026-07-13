@@ -7,6 +7,9 @@
     <div class="container banner-container text-center">
         <h1 class="fade-in-up">Admin Database Dashboard</h1>
         <p class="fade-in-up" style="animation-delay: 0.1s;">Evaluate and verify form submissions stored in SQLite</p>
+        <div class="mt-3 fade-in-up" style="animation-delay: 0.2s;">
+            <a href="{{ url_for('admin_logout') }}" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-right-from-bracket"></i> Admin Logout</a>
+        </div>
     </div>
 </section>
 
@@ -210,9 +213,386 @@
                 </form>
             </div>
         </div>
+
+        <!-- PRICING MANAGEMENT -->
+        <div class="admin-table-wrapper mt-5 fade-in-up">
+            <div class="table-header-flex">
+                <h2><i class="fa-solid fa-tags gold-text"></i> Pricing Management</h2>
+                <span class="count-badge bg-gold text-dark">Live Prices</span>
+            </div>
+
+            <div class="bg-white rounded-shadow p-4">
+                <form action="{{ url_for('update_settings') }}" method="POST" class="admin-settings-form">
+
+                    <!-- ── CLASS FEES ── -->
+                    <h3 class="pricing-section-heading"><i class="fa-solid fa-music"></i> Classes Fee Structure</h3>
+                    <p class="small text-muted mb-3">Enter numbers only (e.g. <code>3500</code>). The ₹ symbol is added automatically on the website.</p>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="priceGroupClasses" class="form-label">
+                                <i class="fa-solid fa-users price-label-icon"></i> Group Classes <small>(8 sessions/month)</small>
+                            </label>
+                            <div class="price-input-wrap">
+                                <span class="price-prefix">₹</span>
+                                <input type="text" name="price_group_classes" id="priceGroupClasses"
+                                    class="form-control price-input"
+                                    value="{{ site_settings.price_group_classes }}"
+                                    placeholder="e.g. 3,500" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="priceIndividual" class="form-label">
+                                <i class="fa-solid fa-user price-label-icon"></i> Individual 1-on-1 <small>(8 sessions/month)</small>
+                            </label>
+                            <div class="price-input-wrap">
+                                <span class="price-prefix">₹</span>
+                                <input type="text" name="price_individual_classes" id="priceIndividual"
+                                    class="form-control price-input"
+                                    value="{{ site_settings.price_individual_classes }}"
+                                    placeholder="e.g. 7,000" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="priceSingleSession" class="form-label">
+                                <i class="fa-solid fa-stopwatch price-label-icon"></i> Single Assessment Session <small>(45 min)</small>
+                            </label>
+                            <div class="price-input-wrap">
+                                <span class="price-prefix">₹</span>
+                                <input type="text" name="price_single_session" id="priceSingleSession"
+                                    class="form-control price-input"
+                                    value="{{ site_settings.price_single_session }}"
+                                    placeholder="e.g. 1,200" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="priceQuarterlyPack" class="form-label">
+                                <i class="fa-solid fa-calendar-days price-label-icon"></i> Quarterly Group Pack <small>(24 classes / 3 months)</small>
+                            </label>
+                            <div class="price-input-wrap">
+                                <span class="price-prefix">₹</span>
+                                <input type="text" name="price_quarterly_pack" id="priceQuarterlyPack"
+                                    class="form-control price-input"
+                                    value="{{ site_settings.price_quarterly_pack }}"
+                                    placeholder="e.g. 9,500" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="max-width: 320px;">
+                        <label for="priceQuarterlyNote" class="form-label">
+                            <i class="fa-solid fa-tag price-label-icon"></i> Quarterly Pack Note <small>(shown as small text)</small>
+                        </label>
+                        <input type="text" name="price_quarterly_pack_note" id="priceQuarterlyNote"
+                            class="form-control"
+                            value="{{ site_settings.price_quarterly_pack_note }}"
+                            placeholder="e.g. Save ₹1000">
+                    </div>
+
+                    <hr class="pricing-divider">
+
+                    <!-- ── SHOW / CONCERT FEES ── -->
+                    <h3 class="pricing-section-heading"><i class="fa-solid fa-microphone-lines"></i> Shows &amp; Concerts Pricing</h3>
+                    <p class="small text-muted mb-3">Enter the starting price for India bookings. For international, you can write a price (e.g. <code>500 USD</code>) or leave as <code>Custom Quote</code>.</p>
+
+                    <!-- Sham-e-Ghazal -->
+                    <div class="show-price-block">
+                        <div class="show-price-label">
+                            <i class="fa-solid fa-moon"></i> Sham-e-Ghazal
+                        </div>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="priceGhazalIndia" class="form-label">India Starting Price</label>
+                                <div class="price-input-wrap">
+                                    <span class="price-prefix">₹</span>
+                                    <input type="text" name="price_show_ghazal_india" id="priceGhazalIndia"
+                                        class="form-control price-input"
+                                        value="{{ site_settings.price_show_ghazal_india }}"
+                                        placeholder="e.g. 25,000" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="priceGhazalIntl" class="form-label">International Price / Note</label>
+                                <input type="text" name="price_show_ghazal_intl" id="priceGhazalIntl"
+                                    class="form-control"
+                                    value="{{ site_settings.price_show_ghazal_intl }}"
+                                    placeholder="e.g. Custom Quote or 500 USD">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soft Bollywood Night -->
+                    <div class="show-price-block">
+                        <div class="show-price-label">
+                            <i class="fa-solid fa-music"></i> Soft Bollywood Night
+                        </div>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="priceBollywoodIndia" class="form-label">India Starting Price</label>
+                                <div class="price-input-wrap">
+                                    <span class="price-prefix">₹</span>
+                                    <input type="text" name="price_show_bollywood_india" id="priceBollywoodIndia"
+                                        class="form-control price-input"
+                                        value="{{ site_settings.price_show_bollywood_india }}"
+                                        placeholder="e.g. 30,000" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="priceBollywoodIntl" class="form-label">International Price / Note</label>
+                                <input type="text" name="price_show_bollywood_intl" id="priceBollywoodIntl"
+                                    class="form-control"
+                                    value="{{ site_settings.price_show_bollywood_intl }}"
+                                    placeholder="e.g. Custom Quote or 600 USD">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Light Music Evening -->
+                    <div class="show-price-block">
+                        <div class="show-price-label">
+                            <i class="fa-solid fa-guitar"></i> Light Music Evening
+                        </div>
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label for="priceLightIndia" class="form-label">India Starting Price</label>
+                                <div class="price-input-wrap">
+                                    <span class="price-prefix">₹</span>
+                                    <input type="text" name="price_show_light_india" id="priceLightIndia"
+                                        class="form-control price-input"
+                                        value="{{ site_settings.price_show_light_india }}"
+                                        placeholder="e.g. 20,000" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="priceLightIntl" class="form-label">International Price / Note</label>
+                                <input type="text" name="price_show_light_intl" id="priceLightIntl"
+                                    class="form-control"
+                                    value="{{ site_settings.price_show_light_intl }}"
+                                    placeholder="e.g. Custom Quote or 450 USD">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-end">
+                        <button type="submit" class="btn btn-gold btn-lg"><i class="fa-solid fa-floppy-disk"></i> Save All Prices</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- MANAGE GALLERY IMAGES -->
+        <div class="admin-table-wrapper mt-5 fade-in-up">
+            <div class="table-header-flex">
+                <h2><i class="fa-solid fa-images gold-text"></i> Manage Gallery Images</h2>
+                <span class="count-badge bg-gold text-dark">{{ images|length }} images</span>
+            </div>
+            
+            <!-- ADD NEW IMAGE FORM -->
+            <div class="bg-white rounded-shadow p-4 mb-4">
+                <h3 class="border-bottom pb-2 mb-3"><i class="fa-solid fa-circle-plus"></i> Add New Image to Gallery</h3>
+                
+                {% if cloudinary_status == 'active' %}
+                <div class="upload-status-banner banner-success mb-3">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div>
+                        <strong>Cloudinary Active</strong> &mdash; Images uploaded here will be stored permanently on Cloudinary CDN. Gallery will never lose images.
+                    </div>
+                </div>
+                {% else %}
+                <div class="upload-status-banner banner-warning mb-3">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div>
+                        <strong>Local Storage Mode</strong> &mdash; Uploaded files are saved locally (good for development). On Vercel, add <code>CLOUDINARY_CLOUD_NAME</code>, <code>CLOUDINARY_API_KEY</code>, <code>CLOUDINARY_API_SECRET</code> in environment variables for permanent storage. Or paste an <strong>Image URL</strong> below (always permanent).
+                    </div>
+                </div>
+                {% endif %}
+
+                <form action="{{ url_for('add_gallery_image') }}" method="POST" enctype="multipart/form-data" class="admin-settings-form" id="addGalleryForm">
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="imgTitle" class="form-label">Image Title *</label>
+                            <input type="text" name="title" id="imgTitle" class="form-control" placeholder="e.g. Stage Performance at Mumbai" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="imgCategory" class="form-label">Category *</label>
+                            <select name="category" id="imgCategory" class="form-control" required>
+                                <option value="concerts">Concerts</option>
+                                <option value="classes">Classes &amp; School</option>
+                                <option value="mehfils">Mehfils</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="imgDateText" class="form-label">Date &amp; Location Label</label>
+                            <input type="text" name="date_text" id="imgDateText" class="form-control" placeholder="e.g. Mumbai - Jan 2026">
+                        </div>
+                        <div class="form-group">
+                            <label for="imgAltText" class="form-label">Alt Text (SEO/Accessibility)</label>
+                            <input type="text" name="alt_text" id="imgAltText" class="form-control" placeholder="e.g. Tanu Harode playing harmonium on stage">
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <!-- Option A: URL -->
+                        <div class="form-group">
+                            <label for="imgUrl" class="form-label">Option A: Image URL (Recommended for Vercel)</label>
+                            <input type="url" name="image_url" id="imgUrl" class="form-control" placeholder="https://example.com/your-image.png" oninput="previewFromUrl(this.value, 'addPreviewImg', 'addPreviewBox')">
+                        </div>
+                        <!-- Option B: Upload File -->
+                        <div class="form-group">
+                            <label class="form-label">Option B: Upload File (Local/Dev)</label>
+                            <!-- Drag & Drop Zone -->
+                            <div class="drop-zone" id="addDropZone">
+                                <div class="drop-zone-inner">
+                                    <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+                                    <p>Drag &amp; drop an image here<br><span class="small text-muted">or click to browse</span></p>
+                                </div>
+                                <input type="file" name="image_file" id="imgFile" class="drop-zone-input" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Preview -->
+                    <div class="img-preview-box" id="addPreviewBox" style="display:none;">
+                        <p class="small text-muted mb-1"><i class="fa-solid fa-eye"></i> Preview</p>
+                        <img id="addPreviewImg" src="" alt="Preview" class="img-preview-thumb">
+                    </div>
+
+                    <div class="mt-3 text-end">
+                        <button type="submit" class="btn btn-gold btn-lg"><i class="fa-solid fa-upload"></i> Add to Gallery</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- CURRENT GALLERY IMAGES GRID -->
+            <div class="bg-white rounded-shadow p-4">
+                <h3 class="border-bottom pb-2 mb-4"><i class="fa-solid fa-grip"></i> Current Gallery ({{ images|length }} Images)</h3>
+                {% if images %}
+                <div class="gallery-admin-grid">
+                    {% for img in images %}
+                    <div class="gallery-admin-card" id="gallery-card-{{ img.id }}">
+                        <div class="gallery-admin-img-wrap">
+                            <img src="{{ img.url }}" alt="{{ img.alt_text or img.title }}" class="gallery-admin-img" onerror="this.src='https://placehold.co/300x200/f5e6d0/8b2238?text=Image+Error'">
+                            <div class="gallery-admin-overlay">
+                                <button type="button" class="btn-admin-action btn-edit-img"
+                                    onclick="openEditModal({{ img.id }}, '{{ img.title|e }}', '{{ img.category }}', '{{ img.date_text|e }}', '{{ img.alt_text|e }}', '{{ img.url|e }}')"
+                                    title="Edit Image">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <form action="{{ url_for('delete_gallery_image', image_id=img.id) }}" method="POST"
+                                    onsubmit="return confirm('Delete \'{{ img.title|e }}\'? This action cannot be undone.');"
+                                    style="display:inline;">
+                                    <button type="submit" class="btn-admin-action btn-delete-img" title="Delete Image">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="gallery-admin-info">
+                            <strong class="gallery-admin-title">{{ img.title }}</strong>
+                            <div class="gallery-admin-meta">
+                                <span class="category-pill {% if img.category == 'concerts' %}pill-show{% elif img.category == 'classes' %}pill-class{% else %}bg-mehfil{% endif %}">
+                                    {{ img.category }}
+                                </span>
+                                {% if img.date_text %}
+                                <span class="small text-muted">{{ img.date_text }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center p-5">
+                    <i class="fa-solid fa-images text-muted" style="font-size: 3rem; opacity: 0.3;"></i>
+                    <p class="mt-3 text-muted">No images in the gallery yet. Add your first image above!</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
         
     </div>
 </section>
+
+<!-- EDIT IMAGE MODAL -->
+<div class="modal-backdrop" id="editModalBackdrop" onclick="closeEditModal()"></div>
+<div class="edit-modal" id="editModal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+    <div class="edit-modal-header">
+        <h3 id="editModalTitle"><i class="fa-solid fa-pen-to-square gold-text"></i> Edit Gallery Image</h3>
+        <button type="button" class="modal-close-btn" onclick="closeEditModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="edit-modal-body">
+        <form id="editGalleryForm" method="POST" enctype="multipart/form-data" class="admin-settings-form">
+            <!-- Current image preview -->
+            <div class="edit-current-preview mb-4">
+                <p class="form-label mb-1">Current Image</p>
+                <img id="editCurrentImg" src="" alt="Current image" class="edit-preview-img">
+            </div>
+
+            <div class="form-grid-2">
+                <div class="form-group">
+                    <label for="editTitle" class="form-label">Image Title *</label>
+                    <input type="text" name="title" id="editTitle" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="editCategory" class="form-label">Category *</label>
+                    <select name="category" id="editCategory" class="form-control" required>
+                        <option value="concerts">Concerts</option>
+                        <option value="classes">Classes &amp; School</option>
+                        <option value="mehfils">Mehfils</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-grid-2">
+                <div class="form-group">
+                    <label for="editDateText" class="form-label">Date &amp; Location Label</label>
+                    <input type="text" name="date_text" id="editDateText" class="form-control" placeholder="e.g. Mumbai - Jan 2026">
+                </div>
+                <div class="form-group">
+                    <label for="editAltText" class="form-label">Alt Text (SEO/Accessibility)</label>
+                    <input type="text" name="alt_text" id="editAltText" class="form-control">
+                </div>
+            </div>
+
+            <div class="replace-image-section">
+                <h4 class="replace-img-heading"><i class="fa-solid fa-rotate"></i> Replace Image (Optional)</h4>
+                <p class="small text-muted mb-3">Leave both fields empty to keep the existing image.</p>
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="editImgUrl" class="form-label">New Image URL</label>
+                        <input type="url" name="image_url" id="editImgUrl" class="form-control" placeholder="https://example.com/new-image.png" oninput="previewFromUrl(this.value, 'editNewPreviewImg', 'editNewPreviewBox')">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Upload New File</label>
+                        <div class="drop-zone drop-zone-sm" id="editDropZone">
+                            <div class="drop-zone-inner">
+                                <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+                                <p class="small">Drop image or click to browse</p>
+                            </div>
+                            <input type="file" name="image_file" id="editImgFile" class="drop-zone-input" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+                <!-- New image preview -->
+                <div class="img-preview-box" id="editNewPreviewBox" style="display:none;">
+                    <p class="small text-muted mb-1"><i class="fa-solid fa-eye"></i> New Image Preview</p>
+                    <img id="editNewPreviewImg" src="" alt="New Preview" class="img-preview-thumb">
+                </div>
+            </div>
+
+            <div class="mt-4 text-end">
+                <button type="button" class="btn btn-outline-dark me-2" onclick="closeEditModal()">Cancel</button>
+                <button type="submit" class="btn btn-gold btn-lg"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <!-- BACK TO SITE BUTTON -->
 <div class="container text-center pb-5">
@@ -257,23 +637,472 @@
 .border-bottom {
     border-bottom: 1px solid #eee;
 }
-.pb-2 {
-    padding-bottom: 8px;
+.pb-2 { padding-bottom: 8px; }
+.mt-4 { margin-top: 24px; }
+.mb-4 { margin-bottom: 20px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-1 { margin-bottom: 4px; }
+.me-2 { margin-right: 8px; }
+.text-end { text-align: right; }
+.p-4 { padding: 30px; }
+.p-5 { padding: 40px; }
+
+/* Info Alert */
+.alert-info-box {
+    background-color: #e3f2fd;
+    border-left: 4px solid #1e88e5;
+    padding: 12px 16px;
+    border-radius: 4px;
 }
-.mt-4 {
-    margin-top: 24px;
+.text-info-dark { color: #0d47a1; }
+
+/* Storage Status Banners */
+.upload-status-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
 }
-.text-end {
-    text-align: right;
+.upload-status-banner i {
+    font-size: 1.2rem;
+    margin-top: 2px;
+    flex-shrink: 0;
 }
-.p-4 {
-    padding: 30px;
+.banner-success {
+    background-color: #e8f5e9;
+    border-left: 4px solid #2e7d32;
+    color: #1b5e20;
 }
+.banner-success i { color: #2e7d32; }
+.banner-warning {
+    background-color: #fff8e1;
+    border-left: 4px solid #f9a825;
+    color: #6d4c00;
+}
+.banner-warning i { color: #f9a825; }
+.banner-warning code {
+    background: rgba(0,0,0,0.07);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+.btn-danger:hover { background-color: #c82333; }
+.bg-secondary { background-color: #6c757d; }
+.text-break { word-break: break-all; }
+
+/* Outline Button */
+.btn-outline-dark {
+    background: transparent;
+    border: 2px solid #333;
+    color: #333;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.btn-outline-dark:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* =============================================
+   DRAG & DROP ZONE
+   ============================================= */
+.drop-zone {
+    position: relative;
+    border: 2px dashed #d4af37;
+    border-radius: 10px;
+    padding: 24px 16px;
+    text-align: center;
+    cursor: pointer;
+    background: #fffdf5;
+    transition: border-color 0.25s, background 0.25s;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.drop-zone:hover,
+.drop-zone.drag-over {
+    border-color: #8b2238;
+    background: #fff5f7;
+}
+.drop-zone-inner {
+    pointer-events: none;
+}
+.drop-zone-inner p {
+    margin: 8px 0 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.drop-icon {
+    font-size: 2rem;
+    color: #d4af37;
+}
+.drop-zone-sm {
+    padding: 14px 12px;
+    min-height: 70px;
+}
+.drop-zone-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* =============================================
+   IMAGE PREVIEW
+   ============================================= */
+.img-preview-box {
+    margin-top: 12px;
+    padding: 14px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fafafa;
+}
+.img-preview-thumb {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 6px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* =============================================
+   GALLERY ADMIN GRID
+   ============================================= */
+.gallery-admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+.gallery-admin-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.gallery-admin-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+.gallery-admin-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    background: #f5e6d0;
+    overflow: hidden;
+}
+.gallery-admin-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+.gallery-admin-card:hover .gallery-admin-img {
+    transform: scale(1.05);
+}
+.gallery-admin-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(139, 34, 56, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+.gallery-admin-card:hover .gallery-admin-overlay {
+    opacity: 1;
+}
+.btn-admin-action {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s, filter 0.15s;
+}
+.btn-admin-action:hover {
+    transform: scale(1.15);
+    filter: brightness(1.15);
+}
+.btn-edit-img {
+    background: #d4af37;
+    color: #fff;
+}
+.btn-delete-img {
+    background: #dc3545;
+    color: #fff;
+}
+.gallery-admin-info {
+    padding: 10px 12px;
+}
+.gallery-admin-title {
+    display: block;
+    font-size: 13px;
+    color: #4a1525;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.gallery-admin-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.bg-mehfil {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* =============================================
+   EDIT MODAL
+   ============================================= */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
+.modal-backdrop.active { display: block; }
+
+.edit-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%) scale(0.96);
+    z-index: 1001;
+    background: #fff;
+    border-radius: 14px;
+    width: 90%;
+    max-width: 760px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s;
+    opacity: 0;
+}
+.edit-modal.active {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+.edit-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 28px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+}
+.edit-modal-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #4a1525;
+}
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s;
+}
+.modal-close-btn:hover { color: #8b2238; }
+.edit-modal-body {
+    padding: 24px 28px 28px;
+}
+.edit-current-preview { text-align: center; }
+.edit-preview-img {
+    max-height: 180px;
+    max-width: 100%;
+    border-radius: 8px;
+    object-fit: contain;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    border: 2px solid #f0d080;
+}
+.replace-image-section {
+    background: #fffdf5;
+    border: 1px dashed #d4af37;
+    border-radius: 8px;
+    padding: 18px;
+    margin-top: 8px;
+}
+.replace-img-heading {
+    font-size: 1rem;
+    color: #8b2238;
+    margin-bottom: 4px;
+}
+
 @media (max-width: 768px) {
     .form-grid-2, .form-grid-3 {
         grid-template-columns: 1fr;
         gap: 0;
     }
+    .gallery-admin-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+    .edit-modal { width: 95%; }
+    .edit-modal-body { padding: 16px 18px 22px; }
 }
 </style>
+
+<script>
+// =============================================
+//  DRAG & DROP ZONE LOGIC
+// =============================================
+function initDropZone(zoneId, inputId, previewImgId, previewBoxId) {
+    const zone = document.getElementById(zoneId);
+    const input = document.getElementById(inputId);
+    if (!zone || !input) return;
+
+    zone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        zone.classList.add('drag-over');
+    });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            input.files = dataTransfer.files;
+            showFilePreview(file, previewImgId, previewBoxId);
+        }
+    });
+    input.addEventListener('change', () => {
+        if (input.files[0]) {
+            showFilePreview(input.files[0], previewImgId, previewBoxId);
+            // Update zone label
+            zone.querySelector('p').innerHTML = `<strong>${input.files[0].name}</strong>`;
+        }
+    });
+}
+
+function showFilePreview(file, imgId, boxId) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const img = document.getElementById(imgId);
+        const box = document.getElementById(boxId);
+        if (img && box) {
+            img.src = e.target.result;
+            box.style.display = 'block';
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+function previewFromUrl(url, imgId, boxId) {
+    const img = document.getElementById(imgId);
+    const box = document.getElementById(boxId);
+    if (!img || !box) return;
+    if (url && url.trim() !== '') {
+        img.src = url;
+        box.style.display = 'block';
+        img.onerror = () => { box.style.display = 'none'; };
+    } else {
+        box.style.display = 'none';
+    }
+}
+
+// Init drop zones on page load
+document.addEventListener('DOMContentLoaded', () => {
+    initDropZone('addDropZone', 'imgFile', 'addPreviewImg', 'addPreviewBox');
+    initDropZone('editDropZone', 'editImgFile', 'editNewPreviewImg', 'editNewPreviewBox');
+});
+
+// =============================================
+//  EDIT MODAL LOGIC
+// =============================================
+function openEditModal(id, title, category, dateText, altText, imgUrl) {
+    // Set form action
+    document.getElementById('editGalleryForm').action = `/admin/gallery/edit/${id}`;
+    
+    // Populate fields
+    document.getElementById('editTitle').value = title;
+    document.getElementById('editAltText').value = altText;
+    document.getElementById('editDateText').value = dateText;
+    
+    const catSelect = document.getElementById('editCategory');
+    for (let option of catSelect.options) {
+        option.selected = option.value === category;
+    }
+
+    // Show current image
+    document.getElementById('editCurrentImg').src = imgUrl;
+
+    // Reset replacement fields
+    document.getElementById('editImgUrl').value = '';
+    document.getElementById('editImgFile').value = '';
+    document.getElementById('editNewPreviewBox').style.display = 'none';
+
+    // Open modal with animation
+    const modal = document.getElementById('editModal');
+    const backdrop = document.getElementById('editModalBackdrop');
+    backdrop.classList.add('active');
+    modal.style.display = 'block';
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => modal.classList.add('active'));
+    });
+    document.body.style.overflow = 'hidden';
+}
+
+function closeEditModal() {
+    const modal = document.getElementById('editModal');
+    const backdrop = document.getElementById('editModalBackdrop');
+    modal.classList.remove('active');
+    backdrop.classList.remove('active');
+    setTimeout(() => { modal.style.display = 'none'; }, 250);
+    document.body.style.overflow = '';
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeEditModal();
+});
+</script>
 {% endblock %}
+

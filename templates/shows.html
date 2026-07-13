@@ -42,8 +42,12 @@
                             <span class="spec-val">120 - 150 Minutes</span>
                         </div>
                         <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-indian-rupee-sign"></i> Starting Price:</span>
+                            <span class="spec-val price-highlight">₹{{ site_settings.price_show_ghazal_india }} <small>(India) &nbsp;|&nbsp; Intl. &mdash; {{ site_settings.price_show_ghazal_intl }}</small></span>
+                        </div>
+                        <div class="spec-row">
                             <span class="spec-label"><i class="fa-solid fa-globe"></i> Available:</span>
-                            <span class="spec-val gold-text">India &amp; International <small>— Contact for pricing &amp; travel</small></span>
+                            <span class="spec-val gold-text">India &amp; International <small>— Travel &amp; stay arranged by host</small></span>
                         </div>
                     </div>
                     
@@ -75,8 +79,12 @@
                             <span class="spec-val">120 - 180 Minutes</span>
                         </div>
                         <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-indian-rupee-sign"></i> Starting Price:</span>
+                            <span class="spec-val price-highlight">₹{{ site_settings.price_show_bollywood_india }} <small>(India) &nbsp;|&nbsp; Intl. &mdash; {{ site_settings.price_show_bollywood_intl }}</small></span>
+                        </div>
+                        <div class="spec-row">
                             <span class="spec-label"><i class="fa-solid fa-globe"></i> Available:</span>
-                            <span class="spec-val gold-text">India &amp; International <small>— Contact for pricing &amp; travel</small></span>
+                            <span class="spec-val gold-text">India &amp; International <small>— Travel &amp; stay arranged by host</small></span>
                         </div>
                     </div>
                     
@@ -107,8 +115,12 @@
                             <span class="spec-val">120 Minutes</span>
                         </div>
                         <div class="spec-row">
+                            <span class="spec-label"><i class="fa-solid fa-indian-rupee-sign"></i> Starting Price:</span>
+                            <span class="spec-val price-highlight">₹{{ site_settings.price_show_light_india }} <small>(India) &nbsp;|&nbsp; Intl. &mdash; {{ site_settings.price_show_light_intl }}</small></span>
+                        </div>
+                        <div class="spec-row">
                             <span class="spec-label"><i class="fa-solid fa-globe"></i> Available:</span>
-                            <span class="spec-val gold-text">India &amp; International <small>— Contact for pricing &amp; travel</small></span>
+                            <span class="spec-val gold-text">India &amp; International <small>— Travel &amp; stay arranged by host</small></span>
                         </div>
                     </div>
                     
@@ -141,4 +153,17 @@
         </div>
     </div>
 </section>
+
+<style>
+.price-highlight {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #8b2238;
+}
+.price-highlight small {
+    font-weight: 400;
+    font-size: 0.82rem;
+    color: #666;
+}
+</style>
 {% endblock %}

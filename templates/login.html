@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="login-section section-padding bg-cream d-flex align-items-center" style="min-height: 80vh;">
+    <div class="container d-flex justify-content-center">
+        <div class="login-card fade-in-up">
+            <div class="login-card-header text-center">
+                <h2>Admin Control Center</h2>
+                <p class="text-muted">Enter credentials to manage Echoes of Music</p>
+            </div>
+            
+            <form action="{{ url_for('admin_login') }}" method="POST" class="login-form">
+                <div class="form-group mb-3">
+                    <label for="adminUsername" class="form-label">Username</label>
+                    <div class="input-icon-wrapper">
+                        <span class="input-icon"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" name="username" id="adminUsername" class="form-control pl-icon" placeholder="Enter username" required>
+                    </div>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="adminPassword" class="form-label">Password</label>
+                    <div class="input-icon-wrapper">
+                        <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" name="password" id="adminPassword" class="form-control pl-icon" placeholder="Enter password" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-gold btn-full-width btn-lg"><i class="fa-solid fa-right-to-bracket"></i> Authenticate &amp; Enter</button>
+            </form>
+            
+            <div class="text-center mt-3">
+                <a href="{{ url_for('index') }}" class="text-muted small">&larr; Return to Home Page</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.login-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+}
+.login-card-header {
+    margin-bottom: 30px;
+}
+.login-card-header h2 {
+    color: #4a1525;
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+.d-flex {
+    display: flex;
+}
+.align-items-center {
+    align-items: center;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: #888;
+}
+.form-control.pl-icon {
+    padding-left: 40px !important;
+}
+.btn-full-width {
+    width: 100%;
+}
+</style>
+{% endblock %}
