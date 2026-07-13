@@ -18,7 +18,11 @@ app.config['SECRET_KEY'] = 'echoes_of_music_tanu_harode_secret_key_2026'
 # Configure local upload directory (used as fallback when Cloudinary is not configured)
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+try:
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+except OSError:
+    print("[WARNING] Could not create UPLOAD_FOLDER locally. This is expected on read-only environments like Vercel.")
+
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 
 # ==============================================================================
