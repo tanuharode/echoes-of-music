@@ -690,84 +690,118 @@ def edit_gallery_image(image_id):
 # ==============================================================================
 
 # Create database tables inside app context
-with app.app_context():
-    db.create_all()
-    
-    # Seed default site settings if empty
-    try:
-        defaults = {
-            'phone': '+91 62613 16204',
-            'whatsapp': '916261316204',
-            'email': 'tanuharode6@gmail.com',
-            'address': 'H.N.-9, Indraprasth Colony, Hinotiya Chandbad, Bhopal - 462010',
-            'classes_timing': 'Classes: Mon - Sat (4:00 PM - 8:00 PM)',
-            'individual_classes_timing': 'By Appointment (4:00 PM - 8:00 PM)',
-            'instagram': 'https://www.instagram.com/tanuharode22?igsh=ZWw2ZGU0YnZtaHE0&utm_source=qr',
-            'youtube': 'https://youtube.com/@tanusinger4291?si=TycISPb_y-fcl17v',
-            'facebook': 'https://facebook.com',
-            'bio_brief': 'Tanu Harode is a distinguished vocalist and educator with 6+ years of experience cultivating the classical and semi-classical music traditions of India.',
-            'bio_specializations': 'Ghazals, Light Music, Voice Culture, Bollywood Music, Riyaz Sessions, Karaoke Music, Ornamentation, Stage Performance, Raga Improvisation'
-        }
-        for key, value in defaults.items():
-            setting = db.session.get(SiteSetting, key)
-            if not setting:
-                db.session.add(SiteSetting(key=key, value=value))
-        db.session.commit()
-    except Exception as e:
-        print(f"Error seeding default settings: {e}")
-
-    # Seed default gallery images if empty
-    try:
-        if not GalleryImage.query.first():
-            default_images = [
-                {
-                    'url': '/static/images/gallery_1.png',
-                    'title': 'Concert Hall Performance',
-                    'alt_text': 'Live Performance at Concert Hall',
-                    'category': 'concerts',
-                    'date_text': 'Bhopal - Oct 2025'
-                },
-                {
-                    'url': '/static/images/gallery_2.png',
-                    'title': 'Classical Voice Practice',
-                    'alt_text': 'Vocal Class Session',
-                    'category': 'classes',
-                    'date_text': 'Studio - Nov 2025'
-                },
-                {
-                    'url': '/static/images/gallery_3.png',
-                    'title': 'Sham-e-Ghazal Soiree',
-                    'alt_text': 'Intimate Sham-e-Ghazal Session',
-                    'category': 'mehfils',
-                    'date_text': 'Private Lounge - Dec 2025'
-                },
-                {
-                    'url': '/static/images/gallery_4.png',
-                    'title': 'Stage Setup & Harmonium',
-                    'alt_text': 'Accompanist Team on Stage',
-                    'category': 'concerts',
-                    'date_text': 'Mumbai - Jan 2026'
-                },
-                {
-                    'url': '/static/images/gallery_5.png',
-                    'title': 'School Choir Training',
-                    'alt_text': 'Tanu Harode teaching school students',
-                    'category': 'classes',
-                    'date_text': "People's International - Feb 2026"
-                },
-                {
-                    'url': '/static/images/gallery_6.png',
-                    'title': 'Light Classical Mehfil',
-                    'alt_text': 'Light Classical Evening Setup',
-                    'category': 'mehfils',
-                    'date_text': 'Outdoor Lawn - March 2026'
-                }
-            ]
-            for img_data in default_images:
-                db.session.add(GalleryImage(**img_data))
+startup_error = None
+try:
+    with app.app_context():
+        db.create_all()
+        
+        # Seed default site settings if empty
+        try:
+            defaults = {
+                'phone': '+91 62613 16204',
+                'whatsapp': '916261316204',
+                'email': 'tanuharode6@gmail.com',
+                'address': 'H.N.-9, Indraprasth Colony, Hinotiya Chandbad, Bhopal - 462010',
+                'classes_timing': 'Classes: Mon - Sat (4:00 PM - 8:00 PM)',
+                'individual_classes_timing': 'By Appointment (4:00 PM - 8:00 PM)',
+                'instagram': 'https://www.instagram.com/tanuharode22?igsh=ZWw2ZGU0YnZtaHE0&utm_source=qr',
+                'youtube': 'https://youtube.com/@tanusinger4291?si=TycISPb_y-fcl17v',
+                'facebook': 'https://facebook.com',
+                'bio_brief': 'Tanu Harode is a distinguished vocalist and educator with 6+ years of experience cultivating the classical and semi-classical music traditions of India.',
+                'bio_specializations': 'Ghazals, Light Music, Voice Culture, Bollywood Music, Riyaz Sessions, Karaoke Music, Ornamentation, Stage Performance, Raga Improvisation'
+            }
+            for key, value in defaults.items():
+                setting = db.session.get(SiteSetting, key)
+                if not setting:
+                    db.session.add(SiteSetting(key=key, value=value))
             db.session.commit()
-    except Exception as e:
-        print(f"Error seeding default gallery images: {e}")
+        except Exception as e:
+            print(f"Error seeding default settings: {e}")
+
+        # Seed default gallery images if empty
+        try:
+            if not GalleryImage.query.first():
+                default_images = [
+                    {
+                        'url': '/static/images/gallery_1.png',
+                        'title': 'Concert Hall Performance',
+                        'alt_text': 'Live Performance at Concert Hall',
+                        'category': 'concerts',
+                        'date_text': 'Bhopal - Oct 2025'
+                    },
+                    {
+                        'url': '/static/images/gallery_2.png',
+                        'title': 'Classical Voice Practice',
+                        'alt_text': 'Vocal Class Session',
+                        'category': 'classes',
+                        'date_text': 'Studio - Nov 2025'
+                    },
+                    {
+                        'url': '/static/images/gallery_3.png',
+                        'title': 'Sham-e-Ghazal Soiree',
+                        'alt_text': 'Intimate Sham-e-Ghazal Session',
+                        'category': 'mehfils',
+                        'date_text': 'Private Lounge - Dec 2025'
+                    },
+                    {
+                        'url': '/static/images/gallery_4.png',
+                        'title': 'Stage Setup & Harmonium',
+                        'alt_text': 'Accompanist Team on Stage',
+                        'category': 'concerts',
+                        'date_text': 'Mumbai - Jan 2026'
+                    },
+                    {
+                        'url': '/static/images/gallery_5.png',
+                        'title': 'School Choir Training',
+                        'alt_text': 'Tanu Harode teaching school students',
+                        'category': 'classes',
+                        'date_text': "People's International - Feb 2026"
+                    },
+                    {
+                        'url': '/static/images/gallery_6.png',
+                        'title': 'Light Classical Mehfil',
+                        'alt_text': 'Light Classical Evening Setup',
+                        'category': 'mehfils',
+                        'date_text': 'Outdoor Lawn - March 2026'
+                    }
+                ]
+                for img_data in default_images:
+                    db.session.add(GalleryImage(**img_data))
+                db.session.commit()
+        except Exception as e:
+            print(f"Error seeding default gallery images: {e}")
+except Exception as e:
+    import traceback
+    startup_error = traceback.format_exc()
+    print(f"[ERROR] Startup database initialization failed:\n{startup_error}")
+
+
+@app.before_request
+def check_startup_error():
+    if startup_error:
+        return f"""
+        <html>
+        <head>
+            <title>Application Startup Error</title>
+            <style>
+                body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 40px; background: #fff5f5; color: #900; line-height: 1.6; }}
+                .container {{ max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-top: 5px solid #d9534f; }}
+                h1 {{ font-size: 24px; margin-top: 0; color: #d9534f; }}
+                pre {{ background: #f8f8f8; padding: 15px; border-radius: 5px; border: 1px solid #ddd; overflow-x: auto; font-family: monospace; font-size: 14px; color: #333; }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>Application Initialization Failed (500 Internal Server Error)</h1>
+                <p>An error occurred while connecting to or initializing the database. This typically happens when the database credentials/URLs are incorrect, the database service is unavailable, or a driver (like psycopg2) has installation issues on this platform.</p>
+                <h3>Error Traceback:</h3>
+                <pre>{startup_error}</pre>
+                <p>Please check your environment variables (like <code>DATABASE_URL</code> or <code>POSTGRES_URL</code>) and configuration.</p>
+            </div>
+        </body>
+        </html>
+        """, 500
+
 # -------------------------------------------------
 # Misspelling redirects for SEO robustness
 # -------------------------------------------------
