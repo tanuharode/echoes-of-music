@@ -768,6 +768,17 @@ with app.app_context():
             db.session.commit()
     except Exception as e:
         print(f"Error seeding default gallery images: {e}")
+# -------------------------------------------------
+# Misspelling redirects for SEO robustness
+# -------------------------------------------------
+
+@app.route('/echoes-of-muzik')
+@app.route('/echoes-of-musics')
+@app.route('/echoes-of-music')
+@app.route('/echoes_of_music')
+def redirect_misspell():
+    """Redirect common misspelled URLs to the home page."""
+    return redirect(url_for('index'), code=301)
 
 if __name__ == '__main__':
     # Run the server on port 5000 in debug mode
